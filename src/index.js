@@ -17,6 +17,15 @@ class sprite {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
+  move(x, y) {
+    if (this.x + x >= 0 && this.x + x <= canvas.width) {
+      this.x += x;
+    }
+    if (this.y + y >= 0 && this.y + y <= canvas.height) {
+      this.y += y;
+    }
+    game.update();
+  }
 }
 
 //Setup gameboard
@@ -36,12 +45,12 @@ var game = {
 
 sprites.push(new sprite(0, 0, 20, 40, "red"));
 
+//Document addEventlisteners
+
 document.addEventListener("keydown", function (e) {
   if (e.key === "ArrowRight") {
-    sprites[0].x += 10;
-    game.update();
+    sprites[0].move(5, 0);
   } else if (e.key === "ArrowLeft") {
-    sprites[0].x -= 10;
-    game.update();
+    sprites[0].move(-5, 0);
   }
 });
